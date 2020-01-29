@@ -1,0 +1,9 @@
+[submodule "3rd/mcl"]
+	path = 3rd/mcl
+	url = https://github.com/herumi/mcl.git
+[submodule "3rd/noisec"]
+	path = 3rd/noisec
+	url = https://github.com/jinmannwong/noise-c.git
+[submodule "3rd/relic"]
+	path = 3rd/relic
+	url = https://github.com/relic-toolkit/relic.git

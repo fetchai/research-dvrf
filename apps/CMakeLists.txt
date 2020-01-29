@@ -1,0 +1,5 @@
+add_subdirectory(network)
+add_subdirectory(benchmark_dkg)
+add_subdirectory(benchmark_threshold_signing)
+add_subdirectory(client_server)
+add_subdirectory(random_beacon)

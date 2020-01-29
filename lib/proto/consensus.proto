@@ -1,0 +1,137 @@
+//------------------------------------------------------------------------------
+//
+//   Copyright 2019-2020 Fetch.AI Limited
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+//
+//------------------------------------------------------------------------------
+
+syntax = "proto2";
+
+package fetch.consensus.pb;
+
+message Neighbour {
+    required string id = 1;
+    required uint32 port = 2;
+    required string public_key = 3;
+    repeated uint32 dh_public_key = 4;
+    repeated uint32 key_signature = 5;
+}
+
+message PrivateShares {
+    required string first = 1;
+    required string second = 2;
+}
+
+message Message {
+    message Join {
+        repeated string nodes = 1;
+    }
+
+    message Gossip {
+        required uint64 step = 1;
+        required bool gossip = 2;
+        required bytes msg = 3; //serialisation of either a gossip or broadcast message defined below
+        required string origin = 4;
+        repeated uint32 signature = 5;
+    }
+
+    oneof payload {
+        Join join = 1;
+        Gossip gossip = 2;
+    }
+}
+
+message Gossip {
+    message SignatureShare {
+        required string message = 1;
+        required string share_sig = 2;
+        optional string share_pi = 3;
+        optional string share_pi2 = 4;
+    }
+
+    oneof payload {
+        SignatureShare sig_share = 1;
+    }
+}
+
+// Different types of messages which are not-gossiped
+message Direct {
+    message RBC {
+        message Tag {
+            required uint32 channel_id = 1; // phase
+            required uint32 rank = 2;
+            required uint32 seq = 3; // how many
+        }
+
+        message Message {
+            required bytes message = 2;
+        }
+        message Hash {
+            required string msg_hash = 2;
+        }
+
+        required Tag tag = 1;
+
+        oneof payload {
+            Message broadcast = 2;
+            Hash echo = 3;
+            Hash ready = 4;
+            Hash request = 5;
+            Message answer = 6;
+        }
+    }
+
+    message NoiseMessage {
+        repeated uint32 payload = 1;
+    }
+
+    required uint32 committee_id = 1;
+    oneof payload {
+        RBC rbc_msg = 2;
+        NoiseMessage handshake = 3;
+        NoiseMessage encrypted_cipher = 4;
+    }
+}
+
+// Message types which are broadcasted via the RBC
+message Broadcast {
+    message Committee {
+        repeated string nodes = 1;
+    }
+
+    message Complaints {
+        repeated string nodes = 1;
+    }
+
+    message Shares {
+        required uint64 phase = 1;
+        repeated string first = 2;
+        repeated string second = 3;
+        repeated string reporter = 4;
+    }
+
+    message Coefficients {
+        required uint64 phase = 1;
+        repeated string coefficients = 2;
+    }
+
+    oneof payload {
+        Complaints complaints = 1;
+        Shares shares = 2;
+        Coefficients coefficients = 3;
+        Committee committee = 4;
+    }
+}
+// option optimize_for = LITE_RUNTIME;
+option optimize_for = SPEED;
