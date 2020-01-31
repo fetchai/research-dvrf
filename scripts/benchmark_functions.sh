@@ -24,8 +24,8 @@ echo "BLS12" >> "$file"
 } | bash scripts/curve_type.sh
 
 # Run benchmarks for mcl implementations
-./build/lib/benchmarks/consensusBenchmarks "dvrf_functions_bls - CryptoMcl" >> "$file"
-./build/lib/benchmarks/consensusBenchmarks "dvrf_functions_modified_bls - CryptoMcl" >> "$file"
+./build/lib/benchmarks/consensusBenchmarks "dfinity_dvrf_functions - CryptoMcl" >> "$file"
+./build/lib/benchmarks/consensusBenchmarks "glow_dvrf_functions - CryptoMcl" >> "$file"
 
 echo "BN384" >> "$file"
 
@@ -35,5 +35,5 @@ echo "BN384" >> "$file"
 } | bash scripts/curve_type.sh
 
 # Run benchmarks for mcl implementations
-./build/lib/benchmarks/consensusBenchmarks "dvrf_functions_bls - CryptoMcl" >> "$file"
-./build/lib/benchmarks/consensusBenchmarks "dvrf_functions_modified_bls - CryptoMcl" >> "$file"
+./build/lib/benchmarks/consensusBenchmarks "dfinity_dvrf_functions - CryptoMcl" >> "$file"
+./build/lib/benchmarks/consensusBenchmarks "glow_dvrf_functions - CryptoMcl" >> "$file"
