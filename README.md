@@ -81,7 +81,8 @@ brew install cmake gmp protobuf openssl libsodium pkg-config
 #### Building the Project 
 Once all dependences have been installed clone the repository and initialise submodules
 ```bash
-git clone https://github.com/fetchai/research-consensus.git
+git clone https://github.com/fetchai/research-dvrf.git
+cd research-dvrf
 git submodule update --init --recursive
 ```
 Build the project
