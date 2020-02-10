@@ -66,10 +66,10 @@ Update and install dependencies
 
 ```bash 
 sudo apt-get update
-sudo apt-get install cmake libgmp-dev libssl-dev libsodium-dev libpthread-stubs0-dev pkg-config
+sudo apt-get install cmake libgmp-dev libssl-dev libpthread-stubs0-dev pkg-config
 ```
 
-To obtain the latest  version, please follow the installation from source instructions for [Protocol Buffer](https://github.com/protocolbuffers/protobuf/blob/master/src/README.md).
+To obtain the latest versions of the other dependencies please follow the instructions for [Libsodium](https://download.libsodium.org/doc/installation/#compilation-on-unix-like-systems) and [Protocol Buffer](https://github.com/protocolbuffers/protobuf/blob/master/src/README.md).
 
 #### On Mac :apple:
 Install brew and then dependencies
