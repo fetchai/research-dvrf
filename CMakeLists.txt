@@ -44,7 +44,7 @@ include(GNUInstallDirs)
 
 # find openssl 
 find_package(PkgConfig REQUIRED)
-find_package(OpenSSL REQUIRED)
+find_package(OpenSSL 1.1.1 REQUIRED)
 if (OPENSSL_FOUND)
     message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
 endif ()
