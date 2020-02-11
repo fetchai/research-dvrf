@@ -33,7 +33,7 @@ public:
   using PrivateKey = typename GlowDkg<CryptoType>::PrivateKey;
   using VerificationKey = typename GlowDkg<CryptoType>::VerificationKey;
   using GroupPublicKey = typename GlowDkg<CryptoType>::GroupPublicKey;
-  using Pairing = typename GlowDvrf<CryptoType>::Pairing;
+  using Pairing = typename GlowDkg<CryptoType>::Pairing;
   using Proof = typename CryptoType::Proof;
 
    GlowDvrf(uint32_t committeeSize, uint32_t threshold) : GlowDkg<CryptoType>{committeeSize, threshold} {}
