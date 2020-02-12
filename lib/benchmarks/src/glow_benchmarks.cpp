@@ -22,7 +22,7 @@
 #include "crypto_relic.hpp"
 
 #include "glow_dvrf.hpp"
-#include "sha3_512.hpp"
+#include "sha512.hpp"
 #include "catch.hpp"
 
 using namespace fetch::consensus;
@@ -45,7 +45,7 @@ TEMPLATE_TEST_CASE("glow_dvrf_functions", "[benchmark][glow]", CryptoMcl, Crypto
 
     BENCHMARK_ADVANCED("Partial Eval")(Catch::Benchmark::Chronometer meter) {
         auto i = static_cast<uint32_t>(rand() % committeeSize);
-        std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+        std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
         meter.measure([&message, &outputs, &generator, i] {
           auto sig = Drb::sign(message, outputs[i].privateKey);
           auto pi = Drb::proof(generator, message, outputs[i].publicKeyShares[i], sig,
@@ -62,7 +62,7 @@ TEMPLATE_TEST_CASE("glow_dvrf_functions", "[benchmark][glow]", CryptoMcl, Crypto
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Combine l_50")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);
@@ -100,7 +100,7 @@ TEMPLATE_TEST_CASE("glow_dvrf_functions", "[benchmark][glow]", CryptoMcl, Crypto
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Combine l_100")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);
@@ -138,7 +138,7 @@ TEMPLATE_TEST_CASE("glow_dvrf_functions", "[benchmark][glow]", CryptoMcl, Crypto
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Combine l_200")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);
@@ -193,7 +193,7 @@ TEMPLATE_TEST_CASE("glow_other_functions", "[benchmark][glow][!hide]", CryptoMcl
     auto groupPublicKey = outputs[0].groupPublicKey;
 
     BENCHMARK_ADVANCED("Verify")(Catch::Benchmark::Chronometer meter) {
-        std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+        std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
         std::set<uint32_t> members;
         while (members.size() < threshold) {
           members.insert(rand() % committeeSize);
@@ -221,7 +221,7 @@ TEMPLATE_TEST_CASE("glow_other_functions", "[benchmark][glow][!hide]", CryptoMcl
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Lagrange Interpolation l_50")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);
@@ -245,7 +245,7 @@ TEMPLATE_TEST_CASE("glow_other_functions", "[benchmark][glow][!hide]", CryptoMcl
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Lagrange Interpolation l_100")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);
@@ -269,7 +269,7 @@ TEMPLATE_TEST_CASE("glow_other_functions", "[benchmark][glow][!hide]", CryptoMcl
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Lagrange Interpolation l_200")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);

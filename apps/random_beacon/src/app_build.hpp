@@ -48,7 +48,7 @@ public:
   void notifyGroupSignature(const std::string &, const std::string &signature) override {
     std::unique_lock<std::mutex> mlock(m_group_sig_);
     if (signatures_computed_.find(signature) == signatures_computed_.end()) {
-      fetch::consensus::SHA3_512 sigHash{signature};
+      fetch::consensus::SHA512 sigHash{signature};
       std::cout << "Round: " << counter << ", Random Value: " << sigHash.toString() << std::endl;
       std::cout << std::endl;
       signatures_computed_.insert(signature);

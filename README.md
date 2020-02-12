@@ -144,7 +144,7 @@ To generate a series of random values using the available implementations run, f
 
 ![](img/random-beacon.gif)
 
-The random value is obtained by computing the SHA3-512 hash of the group signature and is displayed in hexadecimal format. This app bypasses the DKG using a trusted dealer, and can therefore start the generation of random values for a large number of participants quickly. By default, the mcl implementation of the GLOW-DVRF, with curve BN256 and 10 local nodes, is run. To view the other default values and command line interface to change them use `--help`.
+The random value is obtained by computing the SHA512 hash of the group signature and is displayed in hexadecimal format. This app bypasses the DKG using a trusted dealer, and can therefore start the generation of random values for a large number of participants quickly. By default, the mcl implementation of the GLOW-DVRF, with curve BN256 and 10 local nodes, is run. To view the other default values and command line interface to change them use `--help`.
 
 Further implementation details are available [here](implementation-details.md).
 

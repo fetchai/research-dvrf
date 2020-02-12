@@ -23,7 +23,7 @@
 #include "ecdsa.hpp"
 #include "networknode.hpp"
 #include "sha256.hpp"
-#include "sha3_512.hpp"
+#include "sha512.hpp"
 #include "threadpool.hpp"
 
 #include <iostream>
@@ -52,8 +52,8 @@ TEST_CASE("sha256", "[sha]") {
   REQUIRE(sha256.toString() == "64ec88ca00b268e5ba1a35678a1b5316d212f4f366b2477232534a8aeca37f3c");
 }
 
-TEST_CASE("sha3_512", "[sha]") {
-  fetch::consensus::SHA3_512 sha512{"Hello World"};
+TEST_CASE("sha512", "[sha]") {
+  fetch::consensus::SHA512 sha512{"Hello World"};
   REQUIRE(sha512.toString() ==
           "3d58a719c6866b0214f96b0a67b37e51a91e233ce0be126a08f35fdf4c043c6126f40139bfbc338d44eb2a03de9f7bb8eff0ac260b3629811e389a5fbee8a894");
 }

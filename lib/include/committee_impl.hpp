@@ -19,7 +19,7 @@
 
 #include "committee.hpp"
 #include "node.hpp"
-#include "sha3_512.hpp"
+#include "sha512.hpp"
 #include <chrono>
 
 namespace fetch {
@@ -253,7 +253,7 @@ void Committee<CryptoProtocol>::receivedSignatureShares(const std::string &messa
   if (crypto_.isFinished(message)) {
     auto sig = crypto_.computeGroupSignature(message);
     assert(!sig.empty());
-    fetch::consensus::SHA3_512 sigHash{sig};
+    fetch::consensus::SHA512 sigHash{sig};
     logger.info("Node {} round {} random value {}", idToIndex_[node_.id()], thresholdSigningComputed_, sigHash.toString());
     lock.unlock();
     node_.getEventObserver().notifyGroupSignature(message, sig);

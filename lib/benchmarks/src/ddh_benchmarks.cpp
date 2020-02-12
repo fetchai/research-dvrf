@@ -21,7 +21,7 @@
 #include "catch.hpp"
 #include "crypto_sodium.hpp"
 #include "ddh_dvrf.hpp"
-#include "sha3_512.hpp"
+#include "sha512.hpp"
 
 using namespace fetch::consensus;
 
@@ -43,7 +43,7 @@ TEST_CASE("ddh_dvrf_functions", "[benchmark][ddh]") {
 
     BENCHMARK_ADVANCED("Partial Eval")(Catch::Benchmark::Chronometer meter) {
         auto i = static_cast<uint32_t>(rand() % committeeSize);
-        std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+        std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
         meter.measure([&message, &outputs, i, &generator] {
           auto sig = Drb::sign(message, outputs[i].privateKey);
           auto pi = Drb::proof(generator, message, outputs[i].publicKeyShares[i], sig,
@@ -60,7 +60,7 @@ TEST_CASE("ddh_dvrf_functions", "[benchmark][ddh]") {
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Combine l_50")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);
@@ -98,7 +98,7 @@ TEST_CASE("ddh_dvrf_functions", "[benchmark][ddh]") {
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Combine l_100")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);
@@ -136,7 +136,7 @@ TEST_CASE("ddh_dvrf_functions", "[benchmark][ddh]") {
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Combine l_200")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);
@@ -187,7 +187,7 @@ TEST_CASE("ddh_other_functions", "[benchmark][ddh][!hide]") {
 
     BENCHMARK_ADVANCED("Verify")(Catch::Benchmark::Chronometer meter) {
         auto i = static_cast<uint32_t>(rand() % committeeSize);
-        std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+        std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
         auto sig = Drb::sign(message, outputs[i].privateKey);
         auto pi = Drb::proof(generator, message, outputs[i].publicKeyShares[i], sig,
                              outputs[i].privateKey);
@@ -205,7 +205,7 @@ TEST_CASE("ddh_other_functions", "[benchmark][ddh][!hide]") {
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Lagrange Interpolation l_50")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);
@@ -229,7 +229,7 @@ TEST_CASE("ddh_other_functions", "[benchmark][ddh][!hide]") {
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Lagrange Interpolation l_100")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);
@@ -253,7 +253,7 @@ TEST_CASE("ddh_other_functions", "[benchmark][ddh][!hide]") {
       auto outputs = Drb::trustedDealer(committeeSize, threshold);
 
       BENCHMARK_ADVANCED("Lagrange Interpolation l_200")(Catch::Benchmark::Chronometer meter) {
-          std::string message{SHA3_512("hello" + std::to_string(rand() * rand())).toString()};
+          std::string message{SHA512("hello" + std::to_string(rand() * rand())).toString()};
           std::set<uint32_t> members;
           while (members.size() < threshold) {
             members.insert(rand() % committeeSize);

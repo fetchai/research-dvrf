@@ -24,24 +24,22 @@
 
 namespace openssl {
 
-#include <openssl/evp.h>
+#include <openssl/sha.h>
 
 }
 
 namespace fetch {
 namespace consensus {
 
-class SHA3_512 {
-  using hash_array = std::array<uint8_t, EVP_MAX_MD_SIZE>;
+class SHA512 {
+  using hash_array = std::array<uint8_t, SHA512_DIGEST_LENGTH>;
   hash_array data_;
 public:
-  explicit SHA3_512(const std::string &msg) {
-    auto *mdctx = openssl::EVP_MD_CTX_create();
-    assert(mdctx != nullptr);
-    openssl::EVP_DigestInit_ex(mdctx, openssl::EVP_sha3_512(), nullptr);
-    openssl::EVP_DigestUpdate(mdctx, msg.c_str(), msg.length());
-    openssl::EVP_DigestFinal_ex(mdctx, reinterpret_cast<unsigned char *>(data_.data()), nullptr);
-    openssl::EVP_MD_CTX_destroy(mdctx);
+  explicit SHA512(const std::string &msg) {
+    openssl::SHA512_CTX sha512;
+    openssl::SHA512_Init(&sha512);
+    openssl::SHA512_Update(&sha512, msg.c_str(), msg.length());
+    openssl::SHA512_Final(reinterpret_cast<unsigned char *>(data_.data()), &sha512);
   }
 
   std::string toString() const {
