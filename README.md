@@ -94,7 +94,7 @@ make
 ```
 For Mac users, problems with finding OpenSSL might be remedied by specifying the root directory path to cmake. This can be done by replacing `cmake ..` with
 ```bash 
-cmake -DOPENSSL_ROOT_DIR = /usr/local/Cellar/openssl@1.1/openssl1.1.d/ ..
+cmake -DOPENSSL_ROOT_DIR=/usr/local/Cellar/openssl/[version]/ ..
 ```
 
 Run tests (from build directory)
