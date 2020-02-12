@@ -55,7 +55,7 @@ TEST_CASE("sha256", "[sha]") {
 TEST_CASE("sha512", "[sha]") {
   fetch::consensus::SHA512 sha512{"Hello World"};
   REQUIRE(sha512.toString() ==
-          "3d58a719c6866b0214f96b0a67b37e51a91e233ce0be126a08f35fdf4c043c6126f40139bfbc338d44eb2a03de9f7bb8eff0ac260b3629811e389a5fbee8a894");
+          "2c74fd17edafd80e8447b0d46741ee243b7eb74dd2149a0ab1b9246fb30382f27e853d8585719e0e67cbda0daa8f51671064615d645ae27acb15bfb1447f459b");
 }
 
 TEST_CASE("ecdsa", "[ecdsa]") {
