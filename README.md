@@ -62,11 +62,23 @@ This project is built using CMake and requires the following dependences
 * pkg-config
 
 #### On Ubuntu :penguin:
+
+#### On Ubuntu 19.10
+
 Update and install dependencies
 
 ```bash 
 sudo apt-get update
-sudo apt-get install cmake libgmp-dev libssl-dev libpthread-stubs0-dev pkg-config
+sudo apt-get install cmake libgmp-dev libssl-dev libpthread-stubs0-dev pkg-config libprotobuf-dev protobuf-compiler libsodium-dev
+```
+
+#### On Ubuntu 18.04
+
+Update and install dependencies
+
+```bash 
+sudo apt-get update
+sudo apt-get install cmake libgmp-dev libssl-dev libpthread-stubs0-dev pkg-config 
 ```
 
 To obtain the latest versions of the other dependencies please follow the instructions for [Libsodium](https://download.libsodium.org/doc/installation/#compilation-on-unix-like-systems) and [Protocol Buffer](https://github.com/protocolbuffers/protobuf/blob/master/src/README.md).
